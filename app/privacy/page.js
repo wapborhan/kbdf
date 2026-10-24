@@ -1,5 +1,6 @@
+import { pageMeta } from "@/lib/seo";
 import Prose from "@/components/Prose";
-export const metadata = { title: "গোপনীয়তা নীতি | KBDF" };
+export const metadata = pageMeta("গোপনীয়তা নীতি", "কুষ্টিয়া ব্লাড ডোনেট ফাউন্ডেশন কোন তথ্য সংগ্রহ করে এবং কীভাবে ব্যবহার করে তা জানুন।", "/privacy");
 export default function Privacy() {
   return <Prose title="গোপনীয়তা নীতি">
     <p>আমরা শুধু প্রয়োজনীয় তথ্য সংগ্রহ করি: নাম, রক্তের গ্রুপ, উপজেলা, যোগাযোগ নম্বর ও ঐচ্ছিক সামাজিক মাধ্যম লিংক।</p>

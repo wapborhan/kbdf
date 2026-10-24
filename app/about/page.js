@@ -1,5 +1,6 @@
+import { pageMeta } from "@/lib/seo";
 import Prose from "@/components/Prose";
-export const metadata = { title: "আমাদের সম্পর্কে | KBDF" };
+export const metadata = pageMeta("আমাদের সম্পর্কে", "কুষ্টিয়া ব্লাড ডোনেট ফাউন্ডেশন একটি স্বেচ্ছাসেবী উদ্যোগ — কুষ্টিয়ায় জরুরি প্রয়োজনে দ্রুত ও নিরাপদে রক্তদাতা খুঁজে পেতে সাহায্য করা আমাদের লক্ষ্য।", "/about");
 export default function About() {
   return <Prose title="আমাদের সম্পর্কে">
     <p>কুষ্টিয়া ব্লাড ডোনেট ফাউন্ডেশন একটি স্বেচ্ছাসেবী উদ্যোগ, যার লক্ষ্য কুষ্টিয়ায় জরুরি প্রয়োজনে দ্রুত ও নিরাপদে রক্তদাতা খুঁজে পেতে সাহায্য করা।</p>

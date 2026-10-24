@@ -1,5 +1,6 @@
+import { pageMeta } from "@/lib/seo";
 import Prose from "@/components/Prose";
-export const metadata = { title: "শর্তাবলী | KBDF" };
+export const metadata = pageMeta("শর্তাবলী", "কুষ্টিয়া ব্লাড ডোনেট ফাউন্ডেশন প্ল্যাটফর্ম ব্যবহারের শর্তাবলী।", "/terms");
 export default function Terms() {
   return <Prose title="শর্তাবলী">
     <p>এই প্ল্যাটফর্ম শুধু রক্তদাতা ও রক্তগ্রহীতার মধ্যে যোগাযোগে সহায়তা করে। রক্তের গুণমান বা চিকিৎসা বিষয়ে আমরা দায়ী নই।</p>

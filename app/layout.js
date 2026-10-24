@@ -1,16 +1,40 @@
 import "./globals.css";
+import { Hind_Siliguri } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-export const metadata = { title: "কুষ্টিয়া ব্লাড ডোনেট ফাউন্ডেশন", description: "রক্ত দিন, জীবন বাঁচান" };
+import AuthProvider from "@/components/AuthProvider";
+import { SITE } from "@/lib/seo";
+
+const font = Hind_Siliguri({ subsets: ["bengali", "latin"], weight: ["400", "500", "600", "700"], display: "swap" });
+const title = `${SITE.name} — রক্ত দিন, জীবন বাঁচান`;
+
+export const metadata = {
+  metadataBase: new URL(SITE.url),
+  title: { default: title, template: `%s | ${SITE.name}` },
+  description: SITE.description,
+  applicationName: "KBDF",
+  keywords: ["কুষ্টিয়া ব্লাড ডোনেট ফাউন্ডেশন", "রক্তদাতা", "রক্তদান", "জরুরি রক্ত", "কুষ্টিয়া", "blood donor Kushtia", "blood donation Bangladesh", "KBDF"],
+  alternates: { canonical: "/" },
+  openGraph: { type: "website", locale: "bn_BD", siteName: SITE.name, title, description: SITE.description, url: "/" },
+  twitter: { card: "summary_large_image", title, description: SITE.description },
+  robots: { index: true, follow: true },
+};
+export const viewport = { themeColor: "#b91c1c" };
+
+const orgLd = { "@context": "https://schema.org", "@type": "Organization", name: SITE.name, alternateName: "KBDF", url: SITE.url, logo: `${SITE.url}/icon.svg`, description: SITE.description, areaServed: { "@type": "AdministrativeArea", name: "Kushtia, Bangladesh" } };
+
 export default function RootLayout({ children }) {
   return (
     <html lang="bn">
-      <body className="min-h-screen bg-gray-50 text-gray-900">
-        <Header />
-        <main>{children}</main>
-        <Footer />
-        <Toaster position="top-center" />
+      <body className={`${font.className} min-h-screen bg-gray-50 text-gray-900`}>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }} />
+        <AuthProvider>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+          <Toaster position="top-center" />
+        </AuthProvider>
       </body>
     </html>
   );

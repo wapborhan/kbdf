@@ -5,7 +5,7 @@ const DonorSchema = new mongoose.Schema({
   phone: { type: String, required: true, unique: true },
   bloodGroup: { type: String, required: true, index: true },
   upazila: { type: String, required: true, index: true },
-  address: String, facebookUrl: String, photoUrl: String,
+  address: String, note: String, facebookUrl: String, photoUrl: String,
   lastDonationDate: Date,
   status: { type: String, enum: ["pending", "active", "inactive"], default: "pending", index: true },
 }, { timestamps: true });

@@ -1,5 +1,6 @@
+import { pageMeta } from "@/lib/seo";
 import Prose from "@/components/Prose";
-export const metadata = { title: "রক্তদান নির্দেশিকা | KBDF" };
+export const metadata = pageMeta("রক্তদান নির্দেশিকা", "রক্তদানের আগে, সময় ও পরে কী করবেন, কারা রক্ত দিতে পারেন — রক্তদাতাদের জন্য সাধারণ নির্দেশিকা।", "/guidelines");
 export default function Guidelines() {
   return <Prose title="রক্তদান নির্দেশিকা">
     <p>এটি সাধারণ তথ্য; চূড়ান্ত সিদ্ধান্ত নিতে হাসপাতাল বা ব্লাড ব্যাংকের চিকিৎসকের পরামর্শ নিন।</p>
