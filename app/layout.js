@@ -1,5 +1,4 @@
 import "./globals.css";
-import { Hind_Siliguri } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -7,7 +6,6 @@ import AuthProvider from "@/components/AuthProvider";
 import ProgressBar from "@/components/ProgressBar";
 import { SITE } from "@/lib/seo";
 
-const font = Hind_Siliguri({ subsets: ["bengali", "latin"], weight: ["400", "500", "600", "700"], display: "swap" });
 const title = `${SITE.name} — রক্ত দিন, জীবন বাঁচান`;
 
 export const metadata = {
@@ -29,13 +27,19 @@ export default function RootLayout({ children }) {
   return (
     <html lang="bn" suppressHydrationWarning>
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var t=localStorage.getItem("kbdf_theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");if(t==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");}catch(e){}})();`,
           }}
         />
       </head>
-      <body className={`${font.className} min-h-screen bg-slate-50 text-slate-900 transition-colors duration-200 dark:bg-slate-900 dark:text-slate-100`}>
+      <body className="min-h-screen bg-slate-50 text-slate-900 transition-colors duration-200 dark:bg-slate-900 dark:text-slate-100">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }} />
         <AuthProvider>
           <ProgressBar />

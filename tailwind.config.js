@@ -3,6 +3,9 @@ module.exports = {
   content: ["./app/**/*.{js,jsx}", "./components/**/*.{js,jsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['"Hind Siliguri"', '"Noto Sans Bengali"', "system-ui", "sans-serif"],
+      },
       colors: {
         brand: {
           50: "#fef2f2",
