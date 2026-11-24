@@ -4,6 +4,7 @@ import { Toaster } from "react-hot-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AuthProvider from "@/components/AuthProvider";
+import ProgressBar from "@/components/ProgressBar";
 import { SITE } from "@/lib/seo";
 
 const font = Hind_Siliguri({ subsets: ["bengali", "latin"], weight: ["400", "500", "600", "700"], display: "swap" });
@@ -14,7 +15,7 @@ export const metadata = {
   title: { default: title, template: `%s | ${SITE.name}` },
   description: SITE.description,
   applicationName: "KBDF",
-  keywords: ["কুষ্টিয়া ব্লাড ডোনেট ফাউন্ডেশন", "রক্তদাতা", "রক্তদান", "জরুরি রক্ত", "কুষ্টিয়া", "blood donor Kushtia", "blood donation Bangladesh", "KBDF"],
+  keywords: ["SR ব্লাড ডোনেট ফাউন্ডেশন", "রক্তদাতা", "রক্তদান", "জরুরি রক্ত", "কুষ্টিয়া", "blood donor Kushtia", "blood donation Bangladesh", "KBDF"],
   alternates: { canonical: "/" },
   openGraph: { type: "website", locale: "bn_BD", siteName: SITE.name, title, description: SITE.description, url: "/" },
   twitter: { card: "summary_large_image", title, description: SITE.description },
@@ -26,10 +27,18 @@ const orgLd = { "@context": "https://schema.org", "@type": "Organization", name:
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="bn">
-      <body className={`${font.className} min-h-screen bg-gray-50 text-gray-900`}>
+    <html lang="bn" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("kbdf_theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");if(t==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");}catch(e){}})();`,
+          }}
+        />
+      </head>
+      <body className={`${font.className} min-h-screen bg-slate-50 text-slate-900 transition-colors duration-200 dark:bg-slate-900 dark:text-slate-100`}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }} />
         <AuthProvider>
+          <ProgressBar />
           <Header />
           <main>{children}</main>
           <Footer />

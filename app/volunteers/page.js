@@ -4,7 +4,7 @@ import VolunteerCard from "@/components/VolunteerCard";
 import { getVolunteers } from "@/lib/volunteers";
 import { pageMeta } from "@/lib/seo";
 export const dynamic = "force-dynamic";
-export const metadata = pageMeta("স্বেচ্ছাসেবক", "কুষ্টিয়া ব্লাড ডোনেট ফাউন্ডেশনের স্বেচ্ছাসেবকদের সাথে পরিচিত হোন, যারা জরুরি রক্তের আবেদন যোগ ও সমন্বয়ে সহায়তা করেন।", "/volunteers");
+export const metadata = pageMeta("স্বেচ্ছাসেবক", "SR ব্লাড ডোনেট ফাউন্ডেশনের স্বেচ্ছাসেবকদের সাথে পরিচিত হোন, যারা জরুরি রক্তের আবেদন যোগ ও সমন্বয়ে সহায়তা করেন।", "/volunteers");
 
 export default async function VolunteersPage() {
   let list = [];
@@ -19,11 +19,11 @@ export default async function VolunteersPage() {
       <div className="mx-auto max-w-6xl px-4 py-12">
         {list.length ? (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{list.map((v) => <VolunteerCard key={v.id} v={v} />)}</div>
-        ) : <p className="rounded-2xl bg-white p-10 text-center text-gray-500 ring-1 ring-gray-200">এখনো কোনো স্বেচ্ছাসেবক তালিকাভুক্ত হননি।</p>}
-        <div className="mt-12 rounded-3xl bg-white p-8 text-center shadow-sm ring-1 ring-gray-200">
-          <p className="text-lg font-bold">আপনিও স্বেচ্ছাসেবক হতে চান?</p>
-          <p className="mt-1 text-sm text-gray-600">Google দিয়ে নিবন্ধন করুন, তারপর যোগাযোগ করে জানান — অ্যাডমিন আপনাকে স্বেচ্ছাসেবক রোল দেবেন।</p>
-          <div className="mt-5 flex flex-wrap justify-center gap-3"><Link href="/login" className="rounded-full bg-brand-600 px-6 py-2.5 font-medium text-white hover:bg-brand-700">নিবন্ধন করুন</Link><Link href="/contact" className="rounded-full border px-6 py-2.5 font-medium hover:bg-gray-50">যোগাযোগ</Link></div>
+        ) : <p className="rounded-2xl bg-white p-10 text-center text-gray-500 ring-1 ring-gray-200 dark:bg-slate-800 dark:text-slate-400 dark:ring-slate-700">এখনো কোনো স্বেচ্ছাসেবক তালিকাভুক্ত হননি।</p>}
+        <div className="mt-12 rounded-3xl bg-white p-8 text-center shadow-sm ring-1 ring-gray-200 transition dark:bg-slate-800 dark:ring-slate-700">
+          <p className="text-lg font-bold text-gray-900 dark:text-slate-100">আপনিও স্বেচ্ছাসেবক হতে চান?</p>
+          <p className="mt-1 text-sm text-gray-600 dark:text-slate-400">Google দিয়ে নিবন্ধন করুন, তারপর যোগাযোগ করে জানান — অ্যাডমিন আপনাকে স্বেচ্ছাসেবক রোল দেবেন।</p>
+          <div className="mt-5 flex flex-wrap justify-center gap-3"><Link href="/login" className="rounded-full bg-brand-600 px-6 py-2.5 font-medium text-white hover:bg-brand-700">নিবন্ধন করুন</Link><Link href="/contact" className="rounded-full border border-gray-300 px-6 py-2.5 font-medium hover:bg-gray-50 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-700">যোগাযোগ</Link></div>
         </div>
       </div>
     </>

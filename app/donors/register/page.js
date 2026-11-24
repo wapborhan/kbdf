@@ -15,7 +15,7 @@ export default function Register() {
   return (
     <div className="mx-auto max-w-2xl px-4 py-10">
       <h1 className="text-2xl font-bold sm:text-3xl">রক্তদাতা হিসেবে নিবন্ধন করুন</h1>
-      <div className="mt-6 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-gray-200"><DonorForm onSubmit={onSubmit} submitLabel="নিবন্ধন জমা দিন" consent /></div>
+      <div className="mt-6 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-gray-200 transition dark:bg-slate-800 dark:ring-slate-700"><DonorForm onSubmit={onSubmit} submitLabel="নিবন্ধন জমা দিন" consent /></div>
     </div>
   );
 }

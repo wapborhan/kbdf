@@ -23,14 +23,14 @@ export default async function DonorsPage({ searchParams }) {
       <Card className="overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
-            <thead className="bg-gray-50"><tr><th className={th}>দাতা</th><th className={th}>গ্রুপ</th><th className={th}>উপজেলা</th><th className={th}>সর্বশেষ রক্তদান</th><th className={th}>অবস্থা</th><th className={th + " text-right"}>অ্যাকশন</th></tr></thead>
-            <tbody className="divide-y">
-              {items.length === 0 ? <tr><td colSpan={6} className="py-12 text-center text-gray-400">কোনো দাতা পাওয়া যায়নি</td></tr> : items.map((d) => (
-                <tr key={d._id} className="transition hover:bg-red-50/40">
-                  <td className={td}><div className="flex items-center gap-3"><Avatar name={d.name} src={d.photoUrl} /><div><p className="font-medium">{d.name}</p><p className="text-xs text-gray-500">{d.phone}</p></div></div></td>
+            <thead className="bg-gray-50 dark:bg-slate-900/60"><tr><th className={th}>দাতা</th><th className={th}>গ্রুপ</th><th className={th}>উপজেলা</th><th className={th}>সর্বশেষ রক্তদান</th><th className={th}>অবস্থা</th><th className={th + " text-right"}>অ্যাকশন</th></tr></thead>
+            <tbody className="divide-y divide-gray-100 dark:divide-slate-700/60">
+              {items.length === 0 ? <tr><td colSpan={6} className="py-12 text-center text-gray-400 dark:text-slate-500">কোনো দাতা পাওয়া যায়নি</td></tr> : items.map((d) => (
+                <tr key={d._id} className="transition hover:bg-red-50/40 dark:hover:bg-slate-700/30">
+                  <td className={td}><div className="flex items-center gap-3"><Avatar name={d.name} src={d.photoUrl} /><div><p className="font-medium">{d.name}</p><p className="text-xs text-gray-500 dark:text-slate-400">{d.phone}</p></div></div></td>
                   <td className={td}><GroupPill g={d.bloodGroup} /></td>
                   <td className={td}>{d.upazila}</td>
-                  <td className={td + " text-gray-600"}>{d.lastDonationDate ? fmtDate(d.lastDonationDate) : "—"}</td>
+                  <td className={td + " text-gray-600 dark:text-slate-400"}>{d.lastDonationDate ? fmtDate(d.lastDonationDate) : "—"}</td>
                   <td className={td}>{staff ? <DonorStatus id={d._id} value={d.status} /> : <Badge v={d.status} />}</td>
                   <td className={td}><DonorActions d={d} staff={staff} /></td>
                 </tr>))}

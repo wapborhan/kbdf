@@ -1,5 +1,7 @@
 import { pageMeta } from "@/lib/seo";
 import Prose from "@/components/Prose";
+import FaqAccordion from "@/components/FaqAccordion";
+
 export const metadata = pageMeta("সাধারণ প্রশ্ন", "রক্তদাতা নিবন্ধন, রক্তের আবেদন ও তথ্যের গোপনীয়তা সম্পর্কে সাধারণ প্রশ্ন ও উত্তর।", "/faq");
 const faqs = [
   ["রক্ত চাইতে কি টাকা লাগে?", "না, এই প্ল্যাটফর্মে দাতা খুঁজতে বা আবেদন করতে কোনো ফি নেই।"],
@@ -8,5 +10,23 @@ const faqs = [
   ["আবেদন কীভাবে প্রকাশ হয়?", "জমা দেওয়া আবেদন অ্যাডমিন যাচাই করে অনুমোদন করলে তালিকায় দেখা যায়।"],
 ];
 export default function FAQ() {
-  return <Prose title="সাধারণ প্রশ্ন"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) }) }} />{faqs.map(([q, a]) => <details key={q} className="rounded-xl bg-white p-4 ring-1 ring-gray-200"><summary className="cursor-pointer font-semibold">{q}</summary><p className="mt-2">{a}</p></details>)}</Prose>;
+  return (
+    <Prose title="সাধারণ প্রশ্ন">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map(([q, a]) => ({
+              "@type": "Question",
+              name: q,
+              acceptedAnswer: { "@type": "Answer", text: a },
+            })),
+          }),
+        }}
+      />
+      <FaqAccordion items={faqs} />
+    </Prose>
+  );
 }

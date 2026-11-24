@@ -16,10 +16,10 @@ export default function EditProfile({ profile }) {
   }
   return (
     <div className="mx-auto max-w-2xl">
-      <Link href="/dashboard/profile" className="mb-4 inline-flex items-center gap-1 text-sm text-gray-500 hover:text-brand-600"><ArrowLeft className="h-4 w-4" />প্রোফাইলে ফিরুন</Link>
+      <Link href="/dashboard/profile" className="mb-4 inline-flex items-center gap-1 text-sm text-gray-500 hover:text-brand-600 dark:text-slate-400 dark:hover:text-brand-400"><ArrowLeft className="h-4 w-4" />প্রোফাইলে ফিরুন</Link>
       <Card className="p-5 sm:p-8">
         <h2 className="text-lg font-bold">প্রোফাইল সম্পাদনা</h2>
-        <p className="mb-6 mt-1 text-sm text-gray-500">{profile.email}</p>
+        <p className="mb-6 mt-1 text-sm text-gray-500 dark:text-slate-400">{profile.email}</p>
         <ProfileForm defaultValues={{ fullName: profile.name, ...profile.details }} submitLabel="হালনাগাদ করুন" onSubmit={onSubmit} />
       </Card>
     </div>

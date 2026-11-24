@@ -30,6 +30,17 @@ const drops = [
   ["left-[78%] top-[62%]", "h-8 w-8", "2.1s"], ["left-[12%] top-[70%]", "h-14 w-14", ".6s"], ["left-[48%] top-[6%]", "h-6 w-6", "1.8s"],
 ];
 
+const marqueePhrases = [
+  "রক্ত দিন, জীবন বাঁচান",
+  "SR ব্লাড ডোনেট ফাউন্ডেশন",
+  "কুষ্টিয়ার পাশে আমরা",
+  "সবার জন্য সম্পূর্ণ বিনামূল্যে",
+  "যাচাইকৃত রক্তদাতা নেটওয়ার্ক",
+  "জরুরিতে দ্রুত সাড়া",
+  "একটি রক্তদান, একটি নতুন জীবন",
+  "মানবতার সেবায় নিবেদিত",
+];
+
 export default async function Home() {
   const { donors, fulfilled, open, volunteers, requests } = await getData();
   const actions = [
@@ -60,7 +71,7 @@ export default async function Home() {
           <h1 className="fade-up mt-6 text-4xl font-extrabold leading-tight sm:text-6xl lg:text-7xl" style={{ animationDelay: ".1s" }}>
             রক্ত দিন,<br /><span className="bg-gradient-to-r from-red-300 via-rose-200 to-orange-200 bg-clip-text text-transparent">জীবন বাঁচান</span>
           </h1>
-          <p className="fade-up mx-auto mt-5 max-w-2xl text-base text-red-100/90 sm:text-lg" style={{ animationDelay: ".2s" }}>জরুরি মুহূর্তে সঠিক রক্তদাতা খুঁজে পেতে ও রক্তের আবেদন জানাতে কুষ্টিয়া ব্লাড ডোনেট ফাউন্ডেশন আপনার পাশে।</p>
+          <p className="fade-up mx-auto mt-5 max-w-2xl text-base text-red-100/90 sm:text-lg" style={{ animationDelay: ".2s" }}>জরুরি মুহূর্তে সঠিক রক্তদাতা খুঁজে পেতে ও রক্তের আবেদন জানাতে SR ব্লাড ডোনেট ফাউন্ডেশন আপনার পাশে।</p>
           <svg viewBox="0 0 400 40" className="mx-auto mt-8 h-8 w-64 sm:w-96" fill="none"><path className="draw" d="M0 20h120l15-18 20 36 18-26 12 8h215" stroke="#f87171" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
           <div className="mt-10 grid gap-4 text-left sm:grid-cols-3">
             {actions.map(({ href, t, d, I, hot }, i) => (
@@ -73,25 +84,25 @@ export default async function Home() {
             ))}
           </div>
         </div>
-        <svg className="absolute bottom-0 left-0 w-full text-gray-50" viewBox="0 0 1440 80" preserveAspectRatio="none"><path fill="currentColor" d="M0 40C240 80 480 0 720 30s480 50 720 0V80H0z" /></svg>
+        <svg className="absolute bottom-0 left-0 w-full text-slate-50 transition-colors duration-200 dark:text-slate-900" viewBox="0 0 1440 80" preserveAspectRatio="none"><path fill="currentColor" d="M0 40C240 80 480 0 720 30s480 50 720 0V80H0z" /></svg>
       </section>
 
       {/* STATS */}
       <section className="relative z-10 mx-auto -mt-16 max-w-5xl px-4 sm:-mt-20">
-        <div className="grid grid-cols-3 divide-x rounded-3xl bg-white p-4 shadow-xl ring-1 ring-gray-100 sm:p-8">
+        <div className="grid grid-cols-3 divide-x divide-gray-100 rounded-3xl bg-white p-4 shadow-xl ring-1 ring-gray-100 transition-colors duration-200 dark:divide-slate-700 dark:bg-slate-800 dark:ring-slate-700 sm:p-8">
           {[[Users, donors, "সক্রিয় রক্তদাতা"], [HeartPulse, fulfilled, "পূরণকৃত আবেদন"], [Zap, open, "চলমান আবেদন"]].map(([I, n, l]) => (
-            <div key={l} className="px-2 text-center"><I className="mx-auto h-6 w-6 text-brand-600 sm:h-8 sm:w-8" /><p className="mt-2 bg-gradient-to-b from-brand-600 to-brand-900 bg-clip-text text-2xl font-extrabold text-transparent sm:text-5xl">{bn(n)}</p><p className="mt-1 text-xs text-gray-500 sm:text-sm">{l}</p></div>
+            <div key={l} className="px-2 text-center"><I className="mx-auto h-6 w-6 text-brand-600 sm:h-8 sm:w-8" /><p className="mt-2 bg-gradient-to-b from-brand-600 to-brand-900 bg-clip-text text-2xl font-extrabold text-transparent sm:text-5xl">{bn(n)}</p><p className="mt-1 text-xs text-gray-500 dark:text-slate-400 sm:text-sm">{l}</p></div>
           ))}
         </div>
       </section>
 
       {/* BLOOD GROUPS */}
       <section className="mx-auto max-w-6xl px-4 py-16">
-        <p className="text-center text-sm font-semibold uppercase tracking-widest text-brand-600">দ্রুত খুঁজুন</p>
+        <p className="text-center text-sm font-semibold uppercase tracking-widest text-brand-600 dark:text-brand-400">দ্রুত খুঁজুন</p>
         <h2 className="mt-2 text-center text-2xl font-bold sm:text-4xl">রক্তের গ্রুপ বেছে নিন</h2>
         <div className="mt-10 grid grid-cols-4 gap-3 sm:gap-5 lg:grid-cols-8">
           {BLOOD_GROUPS.map((g) => (
-            <Link key={g} href={`/donors?bloodGroup=${encodeURIComponent(g)}`} className="group flex aspect-square items-center justify-center rounded-3xl bg-white shadow-sm ring-1 ring-gray-200 transition duration-300 hover:-translate-y-2 hover:shadow-xl hover:ring-brand-600">
+            <Link key={g} href={`/donors?bloodGroup=${encodeURIComponent(g)}`} className="group flex aspect-square items-center justify-center rounded-3xl bg-white shadow-sm ring-1 ring-gray-200 transition duration-300 hover:-translate-y-2 hover:shadow-xl hover:ring-brand-600 dark:bg-slate-800 dark:ring-slate-700 dark:hover:ring-brand-500">
               <span className="transition group-hover:scale-110"><BloodBadge group={g} /></span>
             </Link>
           ))}
@@ -99,35 +110,44 @@ export default async function Home() {
       </section>
 
       {/* MARQUEE */}
-      <div className="overflow-hidden bg-brand-600 py-3 text-white" aria-hidden="true">
-        <div className="marquee flex w-max gap-10 whitespace-nowrap text-sm font-medium">
-          {[0, 1].map((k) => <div key={k} className="flex gap-10">{["রক্ত দিন, জীবন বাঁচান", "কুষ্টিয়ার পাশে আমরা", "সবার জন্য বিনামূল্যে", "যাচাইকৃত রক্তদাতা", "জরুরিতে দ্রুত সাড়া"].map((t) => <span key={t} className="flex items-center gap-10">{t}<Droplet className="h-3.5 w-3.5 fill-white" /></span>)}</div>)}
+      <div className="overflow-hidden bg-brand-600 py-3 text-white select-none" aria-hidden="true">
+        <div className="marquee flex w-max whitespace-nowrap text-sm font-medium hover:[animation-play-state:paused]">
+          {[0, 1].map((k) => (
+            <div key={k} className="flex shrink-0 items-center">
+              {marqueePhrases.map((t, i) => (
+                <span key={`${k}-${i}`} className="flex items-center gap-4 px-6">
+                  <span>{t}</span>
+                  <Droplet className="h-3.5 w-3.5 fill-white text-white/80" />
+                </span>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
 
       {/* HOW IT WORKS */}
       <section className="mx-auto max-w-6xl px-4 py-16">
-        <p className="text-center text-sm font-semibold uppercase tracking-widest text-brand-600">সহজ ৩ ধাপ</p>
+        <p className="text-center text-sm font-semibold uppercase tracking-widest text-brand-600 dark:text-brand-400">সহজ ৩ ধাপ</p>
         <h2 className="mt-2 text-center text-2xl font-bold sm:text-4xl">কীভাবে কাজ করে</h2>
         <div className="mt-12 grid gap-8 sm:grid-cols-3">
           {steps.map(([I, t, d], i) => (
-            <div key={t} className="relative rounded-3xl bg-white p-7 pt-10 text-center shadow-sm ring-1 ring-gray-200 transition hover:-translate-y-1 hover:shadow-lg">
+            <div key={t} className="relative rounded-3xl bg-white p-7 pt-10 text-center shadow-sm ring-1 ring-gray-200 transition hover:-translate-y-1 hover:shadow-lg dark:bg-slate-800 dark:ring-slate-700">
               <span className="absolute -top-5 left-1/2 flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full bg-gradient-to-br from-brand-600 to-brand-900 font-bold text-white shadow-lg">{bn(i + 1)}</span>
-              <I className="mx-auto h-10 w-10 text-brand-600" /><p className="mt-4 text-lg font-bold">{t}</p><p className="mt-2 text-sm text-gray-600">{d}</p>
+              <I className="mx-auto h-10 w-10 text-brand-600 dark:text-brand-500" /><p className="mt-4 text-lg font-bold">{t}</p><p className="mt-2 text-sm text-gray-600 dark:text-slate-400">{d}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* URGENT REQUESTS */}
-      <section className="bg-gradient-to-b from-brand-50 to-gray-50 py-16">
+      <section className="bg-gradient-to-b from-brand-50 to-slate-50 py-16 dark:from-slate-900/60 dark:to-slate-900">
         <div className="mx-auto max-w-6xl px-4">
           <div className="flex items-end justify-between gap-3">
-            <div><p className="text-sm font-semibold uppercase tracking-widest text-brand-600">এখনই প্রয়োজন</p><h2 className="mt-1 text-2xl font-bold sm:text-3xl">জরুরি রক্তের আবেদন</h2></div>
-            <Link href="/requests" className="flex items-center gap-1 text-sm font-medium text-brand-600 hover:underline">সব দেখুন <ArrowRight className="h-4 w-4" /></Link>
+            <div><p className="text-sm font-semibold uppercase tracking-widest text-brand-600 dark:text-brand-400">এখনই প্রয়োজন</p><h2 className="mt-1 text-2xl font-bold sm:text-3xl">জরুরি রক্তের আবেদন</h2></div>
+            <Link href="/requests" className="flex items-center gap-1 text-sm font-medium text-brand-600 hover:underline dark:text-brand-400">সব দেখুন <ArrowRight className="h-4 w-4" /></Link>
           </div>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {requests.length ? requests.map((r) => <RequestCard key={r._id} r={r} />) : <p className="col-span-full rounded-2xl bg-white p-10 text-center text-gray-500 ring-1 ring-gray-200">এখন কোনো সক্রিয় আবেদন নেই।</p>}
+            {requests.length ? requests.map((r) => <RequestCard key={r._id} r={r} />) : <p className="col-span-full rounded-2xl bg-white p-10 text-center text-gray-500 ring-1 ring-gray-200 dark:bg-slate-800 dark:text-slate-400 dark:ring-slate-700">এখন কোনো সক্রিয় আবেদন নেই।</p>}
           </div>
         </div>
       </section>
@@ -135,11 +155,11 @@ export default async function Home() {
       {/* VOLUNTEERS */}
       <section className="mx-auto max-w-6xl px-4 pb-16">
         <div className="flex items-end justify-between gap-3">
-          <div><p className="text-sm font-semibold uppercase tracking-widest text-brand-600">আমাদের মানুষ</p><h2 className="mt-1 text-2xl font-bold sm:text-3xl">স্বেচ্ছাসেবক</h2></div>
-          <Link href="/volunteers" className="flex items-center gap-1 text-sm font-medium text-brand-600 hover:underline">সবাইকে দেখুন <ArrowRight className="h-4 w-4" /></Link>
+          <div><p className="text-sm font-semibold uppercase tracking-widest text-brand-600 dark:text-brand-400">আমাদের মানুষ</p><h2 className="mt-1 text-2xl font-bold sm:text-3xl">স্বেচ্ছাসেবক</h2></div>
+          <Link href="/volunteers" className="flex items-center gap-1 text-sm font-medium text-brand-600 hover:underline dark:text-brand-400">সবাইকে দেখুন <ArrowRight className="h-4 w-4" /></Link>
         </div>
         <div className="mt-8 grid gap-6 md:grid-cols-3">
-          {volunteers.length ? volunteers.map((v) => <VolunteerCard key={v.id} v={v} />) : <p className="col-span-full rounded-2xl bg-white p-10 text-center text-gray-500 ring-1 ring-gray-200">স্বেচ্ছাসেবকরা শীঘ্রই যুক্ত হবেন। <Link href="/volunteers" className="font-medium text-brand-600 hover:underline">জানুন কীভাবে যুক্ত হবেন</Link></p>}
+          {volunteers.length ? volunteers.map((v) => <VolunteerCard key={v.id} v={v} />) : <p className="col-span-full rounded-2xl bg-white p-10 text-center text-gray-500 ring-1 ring-gray-200 dark:bg-slate-800 dark:text-slate-400 dark:ring-slate-700">স্বেচ্ছাসেবকরা শীঘ্রই যুক্ত হবেন। <Link href="/volunteers" className="font-medium text-brand-600 hover:underline dark:text-brand-400">জানুন কীভাবে যুক্ত হবেন</Link></p>}
         </div>
       </section>
 

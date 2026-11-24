@@ -39,31 +39,31 @@ export default function DatePicker({ value, onChange, min, max, placeholder = "�
 
   return (
     <>
-      <button type="button" ref={btn} onClick={toggle} className="flex w-full items-center gap-2 rounded-xl border border-gray-300 bg-white px-3 py-2.5 text-left text-sm outline-none transition focus:border-brand-600 focus:ring-2 focus:ring-red-100">
-        <Calendar className="h-4 w-4 text-brand-600" />
-        <span className={`flex-1 ${value ? "" : "text-gray-400"}`}>{value ? fmtDate(value) : placeholder}</span>
-        {value && <span role="button" aria-label="মুছুন" onClick={(e) => { e.stopPropagation(); onChange(""); }} className="rounded-full p-0.5 text-gray-400 hover:bg-gray-100"><X className="h-4 w-4" /></span>}
+      <button type="button" ref={btn} onClick={toggle} className="flex w-full items-center gap-2 rounded-xl border border-gray-300 bg-white px-3 py-2.5 text-left text-sm outline-none transition focus:border-brand-600 focus:ring-2 focus:ring-red-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:focus:border-brand-500 dark:focus:ring-brand-900/30">
+        <Calendar className="h-4 w-4 text-brand-600 dark:text-brand-400" />
+        <span className={`flex-1 ${value ? "" : "text-gray-400 dark:text-slate-500"}`}>{value ? fmtDate(value) : placeholder}</span>
+        {value && <span role="button" aria-label="মুছুন" onClick={(e) => { e.stopPropagation(); onChange(""); }} className="rounded-full p-0.5 text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-700 dark:text-slate-400"><X className="h-4 w-4" /></span>}
       </button>
       {open && (
-        <div ref={box} style={pos} onClick={(e) => e.preventDefault()} className="fixed z-[60] w-72 rounded-2xl bg-white p-3 shadow-2xl ring-1 ring-gray-200">
+        <div ref={box} style={pos} onClick={(e) => e.preventDefault()} className="fixed z-[60] w-72 rounded-2xl bg-white p-3 shadow-2xl ring-1 ring-gray-200 transition dark:bg-slate-800 dark:ring-slate-700 dark:text-slate-100">
           <div className="mb-2 flex items-center justify-between gap-1">
-            <button type="button" onClick={() => setView(new Date(y, m - 1, 1))} className="rounded-lg p-1.5 hover:bg-gray-100"><ChevronLeft className="h-4 w-4" /></button>
+            <button type="button" onClick={() => setView(new Date(y, m - 1, 1))} className="rounded-lg p-1.5 hover:bg-gray-100 dark:hover:bg-slate-700"><ChevronLeft className="h-4 w-4" /></button>
             <div className="flex items-center gap-1 text-sm font-semibold">
-              <select value={m} onChange={(e) => setView(new Date(y, +e.target.value, 1))} className="rounded-lg bg-transparent px-1 py-1 hover:bg-gray-100">{MONTHS.map((n, i) => <option key={n} value={i}>{n}</option>)}</select>
-              <select value={y} onChange={(e) => setView(new Date(+e.target.value, m, 1))} className="rounded-lg bg-transparent px-1 py-1 hover:bg-gray-100">{Array.from({ length: 80 }, (_, i) => cy + 5 - i).map((yr) => <option key={yr} value={yr}>{bn(yr)}</option>)}</select>
+              <select value={m} onChange={(e) => setView(new Date(y, +e.target.value, 1))} className="rounded-lg bg-transparent px-1 py-1 hover:bg-gray-100 dark:hover:bg-slate-700 dark:bg-slate-800">{MONTHS.map((n, i) => <option key={n} value={i} className="dark:bg-slate-800">{n}</option>)}</select>
+              <select value={y} onChange={(e) => setView(new Date(+e.target.value, m, 1))} className="rounded-lg bg-transparent px-1 py-1 hover:bg-gray-100 dark:hover:bg-slate-700 dark:bg-slate-800">{Array.from({ length: 80 }, (_, i) => cy + 5 - i).map((yr) => <option key={yr} value={yr} className="dark:bg-slate-800">{bn(yr)}</option>)}</select>
             </div>
-            <button type="button" onClick={() => setView(new Date(y, m + 1, 1))} className="rounded-lg p-1.5 hover:bg-gray-100"><ChevronRight className="h-4 w-4" /></button>
+            <button type="button" onClick={() => setView(new Date(y, m + 1, 1))} className="rounded-lg p-1.5 hover:bg-gray-100 dark:hover:bg-slate-700"><ChevronRight className="h-4 w-4" /></button>
           </div>
-          <div className="grid grid-cols-7 text-center text-xs text-gray-400">{DAYS.map((d) => <span key={d} className="py-1">{d}</span>)}</div>
+          <div className="grid grid-cols-7 text-center text-xs text-gray-400 dark:text-slate-400">{DAYS.map((d) => <span key={d} className="py-1">{d}</span>)}</div>
           <div className="grid grid-cols-7 gap-0.5 text-center text-sm">
             {cells.map((d, i) => d === null ? <span key={i} /> : (() => {
               const s = isoDate(new Date(y, m, d));
-              return <button key={i} type="button" disabled={off(d)} onClick={() => pick(s)} className={`aspect-square rounded-lg transition ${s === value ? "bg-brand-600 font-bold text-white" : s === todayISO() ? "font-bold text-brand-600 ring-1 ring-brand-600" : "hover:bg-brand-50"} disabled:cursor-not-allowed disabled:text-gray-300 disabled:hover:bg-transparent`}>{bn(d)}</button>;
+              return <button key={i} type="button" disabled={off(d)} onClick={() => pick(s)} className={`aspect-square rounded-lg transition ${s === value ? "bg-brand-600 font-bold text-white" : s === todayISO() ? "font-bold text-brand-600 ring-1 ring-brand-600 dark:text-brand-400 dark:ring-brand-400" : "hover:bg-brand-50 dark:hover:bg-slate-700"} disabled:cursor-not-allowed disabled:text-gray-300 dark:disabled:text-slate-600 disabled:hover:bg-transparent`}>{bn(d)}</button>;
             })())}
           </div>
-          <div className="mt-2 flex justify-between border-t pt-2 text-xs">
-            <button type="button" onClick={() => pick("")} className="text-gray-500 hover:text-gray-800">মুছুন</button>
-            <button type="button" disabled={(min && todayISO() < min) || (max && todayISO() > max)} onClick={() => pick(todayISO())} className="font-medium text-brand-600 disabled:text-gray-300">আজ</button>
+          <div className="mt-2 flex justify-between border-t border-gray-100 dark:border-slate-700 pt-2 text-xs">
+            <button type="button" onClick={() => pick("")} className="text-gray-500 hover:text-gray-800 dark:text-slate-400 dark:hover:text-slate-200">মুছুন</button>
+            <button type="button" disabled={(min && todayISO() < min) || (max && todayISO() > max)} onClick={() => pick(todayISO())} className="font-medium text-brand-600 disabled:text-gray-300 dark:text-brand-400 dark:disabled:text-slate-600">আজ</button>
           </div>
         </div>
       )}

@@ -11,11 +11,11 @@ import { todayISO } from "@/lib/utils";
 function Choice({ label, error, options, value, onChange }) {
   return (
     <div>
-      <span className="mb-1 block text-sm font-medium text-gray-700">{label}</span>
+      <span className="mb-1 block text-sm font-medium text-gray-700 dark:text-slate-300">{label}</span>
       <div className="flex flex-wrap gap-2">
-        {options.map(([v, l]) => <button type="button" key={v} onClick={() => onChange(v)} className={`rounded-full px-4 py-2 text-sm transition ${value === v ? "bg-brand-600 font-medium text-white shadow" : "bg-white ring-1 ring-gray-300 hover:ring-brand-600"}`}>{l}</button>)}
+        {options.map(([v, l]) => <button type="button" key={v} onClick={() => onChange(v)} className={`rounded-full px-4 py-2 text-sm transition ${value === v ? "bg-brand-600 font-medium text-white shadow" : "bg-white ring-1 ring-gray-300 hover:ring-brand-600 dark:bg-slate-800 dark:ring-slate-700 dark:text-slate-200 dark:hover:ring-brand-500"}`}>{l}</button>)}
       </div>
-      {error && <span className="mt-1 block text-xs text-red-600">{error.message}</span>}
+      {error && <span className="mt-1 block text-xs text-red-600 dark:text-red-400">{error.message}</span>}
     </div>
   );
 }
@@ -37,13 +37,13 @@ export default function ProfileForm({ onSubmit, defaultValues = {}, submitLabel 
       {choice("maritalStatus", "বৈবাহিক অবস্থা *", MARITAL)}
       <div className="sm:col-span-2"><Field label="ঠিকানা *" error={errors.address}><Textarea max={200} length={(watch("address") || "").length} placeholder="গ্রাম/মহল্লা, থানা, জেলা..." {...register("address")} /></Field></div>
 
-      <div className="space-y-4 rounded-2xl bg-gray-50 p-4 sm:col-span-2">
+      <div className="space-y-4 rounded-2xl bg-gray-50 p-4 transition-colors duration-200 dark:bg-slate-800/50 sm:col-span-2">
         {choice("profession", "বর্তমান পেশা *", PROFESSIONS)}
         {prof === "student" && <div className="grid gap-4 sm:grid-cols-2">{inp("className", "শ্রেণি / বর্ষ *")}{inp("institutionName", "স্কুল / কলেজ / বিশ্ববিদ্যালয়ের নাম *")}<div className="sm:col-span-2">{inp("institutionAddress", "প্রতিষ্ঠানের ঠিকানা *")}</div></div>}
         {prof === "job_holder" && <div className="grid gap-4 sm:grid-cols-2">{inp("companyName", "প্রতিষ্ঠানের নাম *")}{inp("position", "পদবী *")}<div className="sm:col-span-2">{inp("companyAddress", "প্রতিষ্ঠানের ঠিকানা *")}</div></div>}
         {prof === "other" && <Field label="পেশার বিবরণ *" error={errors.professionDetails}><Textarea max={300} length={(watch("professionDetails") || "").length} placeholder="যেমন: ব্যবসা, গৃহিণী, কৃষি..." {...register("professionDetails")} /></Field>}
       </div>
-      <label className="flex items-start gap-2 rounded-xl bg-teal-50 p-3 text-sm text-teal-800 sm:col-span-2"><input type="checkbox" className="mt-1" {...register("publicConsent")} /><span>(ঐচ্ছিক) স্বেচ্ছাসেবক হলে আমার নাম ও প্রোফাইল ছবি ওয়েবসাইটের স্বেচ্ছাসেবক তালিকায় প্রকাশ করা যাবে।</span></label>
+      <label className="flex items-start gap-2 rounded-xl bg-teal-50 p-3 text-sm text-teal-800 dark:bg-teal-950/40 dark:text-teal-300 dark:ring-1 dark:ring-teal-800 sm:col-span-2"><input type="checkbox" className="mt-1" {...register("publicConsent")} /><span>(ঐচ্ছিক) স্বেচ্ছাসেবক হলে আমার নাম ও প্রোফাইল ছবি ওয়েবসাইটের স্বেচ্ছাসেবক তালিকায় প্রকাশ করা যাবে।</span></label>
       <button disabled={isSubmitting} className="rounded-xl bg-brand-600 py-3 font-semibold text-white transition hover:bg-brand-700 disabled:opacity-60 sm:col-span-2">{isSubmitting ? "অপেক্ষা করুন..." : submitLabel}</button>
     </form>
   );

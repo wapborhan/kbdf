@@ -12,9 +12,9 @@ const Textarea = forwardRef(function Textarea({ max = 500, length = 0, className
         {...p} maxLength={max} rows={3}
         ref={(n) => { el.current = n; typeof ref === "function" ? ref(n) : ref && (ref.current = n); }}
         onInput={(e) => { fit(); onInput?.(e); }}
-        className={`w-full resize-none rounded-xl border border-gray-300 bg-white px-3 py-2.5 pb-7 text-sm leading-relaxed outline-none transition focus:border-brand-600 focus:ring-2 focus:ring-red-100 ${className}`}
+        className={`w-full resize-none rounded-xl border border-gray-300 bg-white px-3 py-2.5 pb-7 text-sm leading-relaxed outline-none transition focus:border-brand-600 focus:ring-2 focus:ring-red-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:focus:border-brand-500 dark:focus:ring-brand-900/30 ${className}`}
       />
-      <span className={`pointer-events-none absolute bottom-2 right-3 text-xs ${near ? "text-brand-600" : "text-gray-400"}`}>{length.toLocaleString("bn-BD")}/{max.toLocaleString("bn-BD")}</span>
+      <span className={`pointer-events-none absolute bottom-2 right-3 text-xs ${near ? "text-brand-600 dark:text-brand-400" : "text-gray-400 dark:text-slate-500"}`}>{length.toLocaleString("bn-BD")}/{max.toLocaleString("bn-BD")}</span>
     </div>
   );
 });

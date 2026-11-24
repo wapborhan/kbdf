@@ -13,13 +13,13 @@ export function infoSections(d) {
   ];
 }
 export default function ProfileInfo({ d }) {
-  if (!d?.fullName) return <p className="py-6 text-center text-gray-500">এখনো কোনো তথ্য দেওয়া হয়নি।</p>;
+  if (!d?.fullName) return <p className="py-6 text-center text-gray-500 dark:text-slate-400">এখনো কোনো তথ্য দেওয়া হয়নি।</p>;
   return (
     <div className="space-y-4">
       {infoSections(d).map(([t, rows]) => rows.length > 0 && (
         <Card key={t} className="p-5">
           <h3 className="mb-3 font-bold">{t}</h3>
-          <dl className="grid gap-x-6 gap-y-3 sm:grid-cols-2">{rows.map(([k, v]) => <div key={k}><dt className="text-xs text-gray-500">{k}</dt><dd className="text-sm font-medium">{v}</dd></div>)}</dl>
+          <dl className="grid gap-x-6 gap-y-3 sm:grid-cols-2">{rows.map(([k, v]) => <div key={k}><dt className="text-xs text-gray-500 dark:text-slate-400">{k}</dt><dd className="text-sm font-medium text-gray-900 dark:text-slate-100">{v}</dd></div>)}</dl>
         </Card>
       ))}
     </div>

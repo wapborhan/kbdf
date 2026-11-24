@@ -17,20 +17,20 @@ export default async function ProfilePage() {
         <div className="h-28 bg-gradient-to-r from-brand-900 via-brand-700 to-red-500" />
         <div className="px-5 pb-6 sm:px-8">
           <div className="-mt-12 flex flex-wrap items-end gap-4">
-            <div className="h-24 w-24 overflow-hidden rounded-full bg-white ring-4 ring-white">
+            <div className="h-24 w-24 overflow-hidden rounded-full bg-white ring-4 ring-white dark:bg-slate-800 dark:ring-slate-800">
               {profile.photoUrl ? <img src={profile.photoUrl} alt="" referrerPolicy="no-referrer" className="h-full w-full object-cover" /> : <span className="flex h-full w-full items-center justify-center bg-gradient-to-br from-brand-600 to-brand-900 text-3xl font-bold text-white">{(profile.name || "?").trim()[0]}</span>}
             </div>
-            <div className="min-w-0 flex-1 pb-1"><h2 className="truncate text-xl font-bold">{profile.name}</h2><p className="truncate text-sm text-gray-500">{profile.email}</p></div>
+            <div className="min-w-0 flex-1 pb-1"><h2 className="truncate text-xl font-bold">{profile.name}</h2><p className="truncate text-sm text-gray-500 dark:text-slate-400">{profile.email}</p></div>
             <Link href="/dashboard/profile/edit" className="flex items-center gap-2 rounded-xl bg-brand-600 px-4 py-2 text-sm font-medium text-white shadow hover:bg-brand-700"><Pencil className="h-4 w-4" />প্রোফাইল সম্পাদনা</Link>
           </div>
-          <div className="mt-4 flex flex-wrap items-center gap-2 text-sm text-gray-500">
+          <div className="mt-4 flex flex-wrap items-center gap-2 text-sm text-gray-500 dark:text-slate-400">
             <Badge v={profile.role} />
-            <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${profile.approved ? "bg-green-100 text-green-700" : "bg-amber-100 text-amber-700"}`}>{profile.approved ? "অনুমোদিত" : "অনুমোদনের অপেক্ষায়"}</span>
+            <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${profile.approved ? "bg-green-100 text-green-700 dark:bg-emerald-950/40 dark:text-emerald-300 dark:ring-1 dark:ring-emerald-800/40" : "bg-amber-100 text-amber-700 dark:bg-amber-950/40 dark:text-amber-300 dark:ring-1 dark:ring-amber-800/40"}`}>{profile.approved ? "অনুমোদিত" : "অনুমোদনের অপেক্ষায়"}</span>
             <span>যোগদান: {fmtDate(profile.createdAt)}</span>
           </div>
         </div>
       </Card>
-      {profile.profileComplete ? <ProfileInfo d={d} /> : <Card className="p-8 text-center"><p className="text-gray-600">আপনার ব্যক্তিগত তথ্য এখনো দেওয়া হয়নি।</p><Link href="/dashboard/profile/edit" className="mt-4 inline-block rounded-xl bg-brand-600 px-5 py-2 text-sm font-medium text-white hover:bg-brand-700">তথ্য যোগ করুন</Link></Card>}
+      {profile.profileComplete ? <ProfileInfo d={d} /> : <Card className="p-8 text-center"><p className="text-gray-600 dark:text-slate-300">আপনার ব্যক্তিগত তথ্য এখনো দেওয়া হয়নি।</p><Link href="/dashboard/profile/edit" className="mt-4 inline-block rounded-xl bg-brand-600 px-5 py-2 text-sm font-medium text-white hover:bg-brand-700">তথ্য যোগ করুন</Link></Card>}
     </div>
   );
 }
